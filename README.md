@@ -2,11 +2,29 @@
 
 Simple RESTful API built with ASP.NET Core 2.2 to show how to create RESTful services using a decoupled, maintainable architecture.
 
+## Changes list
+
+Some changes were made to the code presented at the tutorial published on [Medium](https://medium.com/free-code-camp/an-awesome-guide-on-how-to-build-restful-apis-with-asp-net-core-87b818123e28) and [freeCodeCamp](https://www.freecodecamp.org/news/an-awesome-guide-on-how-to-build-restful-apis-with-asp-net-core-87b818123e28/), to make the API code cleaner and to add functionalities that developers may find useful.
+
+If you want to download the original code showed on the tutorial, download the 1.0.0 tag.
+
+- v1.1.0 *[June 18, 2019]*
+
+  - Added Swagger documentation through [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle);
+  - Added cache through native [IMemoryCache](https://docs.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-2.2);
+  - Changed products listing to allow filtering by category ID, to show how to perform specific queries with EF Core;
+  - Changed ModelState validation to use *ApiController* attribute and *InvalidResponseFactory* in *Startup*.
+
+- 1.0.0 *[February 4, 2019]*
+
+  - First version of the example API, presented in the tutorial on [Medium](https://medium.com/free-code-camp/an-awesome-guide-on-how-to-build-restful-apis-with-asp-net-core-87b818123e28) and [freeCodeCamp](https://www.freecodecamp.org/news/an-awesome-guide-on-how-to-build-restful-apis-with-asp-net-core-87b818123e28/).
+
 ## Frameworks and Libraries
 - [ASP.NET Core 2.2](https://docs.microsoft.com/pt-br/aspnet/core/?view=aspnetcore-2.2);
 - [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/) (for data access);
 - [Entity Framework In-Memory Provider](https://docs.microsoft.com/en-us/ef/core/miscellaneous/testing/in-memory) (for testing purposes);
 - [AutoMapper](https://automapper.org/) (for mapping resources and models);
+- [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle) (API documentation).
 
 ## How to Test
 
@@ -17,6 +35,10 @@ dotnet restore
 dotnet run
 ```
 
-Navigate to ```http://localhost:5000/api/categories``` to check if the API is working. If you see a HTTPS security error, just add an exception to see the results.
+Navigate to ```https://localhost:5001/api/categories``` to check if the API is working. If you see a HTTPS security error, just add an exception to see the results.
 
-To test all endpoints, you need to use a software such as [Postman](https://www.getpostman.com/).
+Navigate to ```https://localhost:5001/swagger``` to check the API documentation.
+
+![API Documentation](https://raw.githubusercontent.com/evgomes/supermarket-api/master/images/swagger.png)
+
+To test all endpoints, you'll need to use a software such as [Postman](https://www.getpostman.com/).
