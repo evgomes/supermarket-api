@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Caching.Memory;
 using Supermarket.API.Domain.Models;
 using Supermarket.API.Domain.Repositories;
 using Supermarket.API.Domain.Services;
 using Supermarket.API.Domain.Services.Communication;
+using Supermarket.API.Extensions;
+using Supermarket.API.Infrastructure;
 
 namespace Supermarket.API.Services
 {
@@ -13,17 +16,28 @@ namespace Supermarket.API.Services
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMemoryCache _cache;
 
-        public ProductService(IProductRepository productRepository, ICategoryRepository categoryRepository, IUnitOfWork unitOfWork)
+        public ProductService(IProductRepository productRepository, ICategoryRepository categoryRepository, IUnitOfWork unitOfWork, IMemoryCache cache)
         {
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
             _unitOfWork = unitOfWork;
+            _cache = cache;
         }
 
-        public async Task<IEnumerable<Product>> ListAsync()
+        public async Task<IEnumerable<Product>> ListAsync(int? categoryId)
         {
-            return await _productRepository.ListAsync();
+            // Here I list products from cache if they exist, but now the data can vary according to the category ID.
+            // I have to compose a cache to avoid returning wrong data.
+            string cacheKey = GetCacheKeyForCategoryId(categoryId);
+            
+            var products = await _cache.GetOrCreateAsync(cacheKey, (entry) => {
+                entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(1);
+                return _productRepository.ListAsync(categoryId);
+            });
+
+            return products;
         }
 
         public async Task<ProductResponse> SaveAsync(Product product)
@@ -100,6 +114,17 @@ namespace Supermarket.API.Services
                 // Do some logging stuff
                 return new ProductResponse($"An error occurred when deleting the product: {ex.Message}");
             }
+        }
+
+        private string GetCacheKeyForCategoryId(int? categoryId)
+        {
+            string key = CacheKeys.ProductsList.ToString();
+            if (categoryId.HasValue && categoryId > 0)
+            {
+                key = string.Concat(key, categoryId.Value);
+            }
+
+            return key;
         }
     }
 }

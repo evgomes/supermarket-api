@@ -13,7 +13,12 @@ namespace Supermarket.API.Persistence.Repositories
 
         public async Task<IEnumerable<Category>> ListAsync()
         {
-            return await _context.Categories.ToListAsync();
+            return await _context.Categories
+                                 .AsNoTracking()
+                                 .ToListAsync();
+
+            // AsNoTracking tells EF Core it doesn't need to track changes on listed entities. Disabling entity
+            // tracking makes the code a little faster
         }
 
         public async Task AddAsync(Category category)
