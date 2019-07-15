@@ -16,8 +16,6 @@ namespace Supermarket.API.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMemoryCache _cache;
 
-        private const string LIST_CATEGORIES = "LIST_PRODUCTS";
-
         public CategoryService(ICategoryRepository categoryRepository, IUnitOfWork unitOfWork, IMemoryCache cache)
         {
             _categoryRepository = categoryRepository;

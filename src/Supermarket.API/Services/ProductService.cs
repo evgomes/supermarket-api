@@ -1,12 +1,11 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
 using Supermarket.API.Domain.Models;
+using Supermarket.API.Domain.Models.Queries;
 using Supermarket.API.Domain.Repositories;
 using Supermarket.API.Domain.Services;
 using Supermarket.API.Domain.Services.Communication;
-using Supermarket.API.Extensions;
 using Supermarket.API.Infrastructure;
 
 namespace Supermarket.API.Services
@@ -26,15 +25,15 @@ namespace Supermarket.API.Services
             _cache = cache;
         }
 
-        public async Task<IEnumerable<Product>> ListAsync(int? categoryId)
+        public async Task<QueryResult<Product>> ListAsync(ProductsQuery query)
         {
-            // Here I list products from cache if they exist, but now the data can vary according to the category ID.
-            // I have to compose a cache to avoid returning wrong data.
-            string cacheKey = GetCacheKeyForCategoryId(categoryId);
+            // Here I list the query result from cache if they exist, but now the data can vary according to the category ID, page and amount of
+            // items per page. I have to compose a cache to avoid returning wrong data.
+            string cacheKey = GetCacheKeyForProductsQuery(query);
             
             var products = await _cache.GetOrCreateAsync(cacheKey, (entry) => {
                 entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(1);
-                return _productRepository.ListAsync(categoryId);
+                return _productRepository.ListAsync(query);
             });
 
             return products;
@@ -116,14 +115,16 @@ namespace Supermarket.API.Services
             }
         }
 
-        private string GetCacheKeyForCategoryId(int? categoryId)
+        private string GetCacheKeyForProductsQuery(ProductsQuery query)
         {
             string key = CacheKeys.ProductsList.ToString();
-            if (categoryId.HasValue && categoryId > 0)
+            
+            if (query.CategoryId.HasValue && query.CategoryId > 0)
             {
-                key = string.Concat(key, categoryId.Value);
+                key = string.Concat(key, "_", query.CategoryId.Value);
             }
 
+            key = string.Concat(key, "_", query.Page, "_", query.ItemsPerPage);
             return key;
         }
     }
