@@ -8,7 +8,10 @@ Some changes were made to the code presented at the tutorial published on [Mediu
 
 If you want to download the original code showed on the tutorial, download the 1.0.0 tag.
 
-- v1.1.0 *[June 18, 2019]*
+- 1.2.0 *[July 15, 2019]*
+    - Changed `/api/products` endpoint to allow pagination (see [issue #1](https://github.com/evgomes/supermarket-api/issues/1)).
+
+- 1.1.0 *[June 18, 2019]*
 
   - Added Swagger documentation through [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle);
   - Added cache through native [IMemoryCache](https://docs.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-2.2);
