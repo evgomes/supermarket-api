@@ -54,7 +54,7 @@ namespace Supermarket.API.Controllers
                 return BadRequest(new ErrorResource(result.Message));
             }
 
-            var categoryResource = _mapper.Map<Category, CategoryResource>(result.Category);
+            var categoryResource = _mapper.Map<Category, CategoryResource>(result.Resource);
             return Ok(categoryResource);
         }
 
@@ -77,7 +77,7 @@ namespace Supermarket.API.Controllers
                 return BadRequest(new ErrorResource(result.Message));
             }
 
-            var categoryResource = _mapper.Map<Category, CategoryResource>(result.Category);
+            var categoryResource = _mapper.Map<Category, CategoryResource>(result.Resource);
             return Ok(categoryResource);
         }
 
@@ -98,7 +98,7 @@ namespace Supermarket.API.Controllers
                 return BadRequest(new ErrorResource(result.Message));
             }
 
-            var categoryResource = _mapper.Map<Category, CategoryResource>(result.Category);
+            var categoryResource = _mapper.Map<Category, CategoryResource>(result.Resource);
             return Ok(categoryResource);
         }
     }
