@@ -6,10 +6,13 @@ Simple RESTful API built with ASP.NET Core 2.2 to show how to create RESTful ser
 
 Some changes were made to the code presented at the tutorial published on [Medium](https://medium.com/free-code-camp/an-awesome-guide-on-how-to-build-restful-apis-with-asp-net-core-87b818123e28) and [freeCodeCamp](https://www.freecodecamp.org/news/an-awesome-guide-on-how-to-build-restful-apis-with-asp-net-core-87b818123e28/), to make the API code cleaner and to add functionalities that developers may find useful.
 
-If you want to download the original code showed on the tutorial, download the 1.0.0 tag.
+If you want to download the original code showed on the tutorial, download the [1.0.0](https://github.com/evgomes/supermarket-api/releases/tag/1.0.0) tag.
+
+- 1.2.1 *[August 11, 2019]*
+    - Changed `BaseResponse` to use generics as a way to simplify responses (see [#3](https://github.com/evgomes/supermarket-api/pull/3)).
 
 - 1.2.0 *[July 15, 2019]*
-    - Changed `/api/products` endpoint to allow pagination (see [issue #1](https://github.com/evgomes/supermarket-api/issues/1)).
+    - Changed `/api/products` endpoint to allow pagination (see [#1](https://github.com/evgomes/supermarket-api/issues/1)).
 
 - 1.1.0 *[June 18, 2019]*
 
