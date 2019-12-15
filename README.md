@@ -8,6 +8,10 @@ Some changes were made to the code presented at the tutorial published on [Mediu
 
 If you want to download the original code showed on the tutorial, download the [1.0.0](https://github.com/evgomes/supermarket-api/releases/tag/1.0.0) tag.
 
+- 1.3.0 *[December 15, 2019]*
+	- Updated ASP.NET Core version to 3.1, fixed issues related to InMemoryProvider, updated Swagger (see [#5](https://github.com/evgomes/supermarket-api/pull/5));
+	- Fixed paging calculation mistake, updated descriptions, updated "launchSettings.json" to open Swagger on running the application.
+
 - 1.2.1 *[August 11, 2019]*
     - Changed `BaseResponse` to use generics as a way to simplify responses (see [#3](https://github.com/evgomes/supermarket-api/pull/3)).
 
