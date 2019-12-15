@@ -16,12 +16,12 @@ namespace Supermarket.API.Extensions
                 cfg.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "Supermarket API",
-                    Version = "v1.1",
+                    Version = "v3",
                     Description = "Simple RESTful API built with ASP.NET Core 3.1 to show how to create RESTful services using a decoupled, maintainable architecture.",
                     Contact = new OpenApiContact
                     {
                         Name = "Evandro Gayer Gomes",
-                        Url = new Uri("https://github.com/evgomes")
+                        Url = new Uri("https://evandroggomes.com.br/")
                     },
                     License = new OpenApiLicense
                     {
@@ -41,8 +41,7 @@ namespace Supermarket.API.Extensions
             app.UseSwagger().UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "Supermarket API");
-                options.DocumentTitle = "Calendar API";
-                options.RoutePrefix = string.Empty;
+                options.DocumentTitle = "Supermarket API";
             });
             return app;
         }

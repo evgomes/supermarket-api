@@ -1,6 +1,6 @@
 namespace Supermarket.API.Infrastructure
 {
-    public enum CacheKeys
+    public enum CacheKeys : byte
     {
         CategoriesList,
         ProductsList,
