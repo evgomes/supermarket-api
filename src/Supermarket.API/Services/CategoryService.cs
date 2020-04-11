@@ -62,7 +62,6 @@ namespace Supermarket.API.Services
 
             try
             {
-                _categoryRepository.Update(existingCategory);
                 await _unitOfWork.CompleteAsync();
 
                 return new CategoryResponse(existingCategory);
