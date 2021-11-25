@@ -1,7 +1,6 @@
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Supermarket.API.Domain.Models;
-using Supermarket.API.Persistence.Contexts.Configurations;
 
 namespace Supermarket.API.Persistence.Contexts
 {
