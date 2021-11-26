@@ -1,6 +1,6 @@
 # Supermarket API
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Simple RESTful API built with ASP.NET 5 to show how to create RESTful services using a decoupled, maintainable architecture.
@@ -75,6 +75,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://www.linkedin.com/in/mahmmoud-kinawy-7928b218a/"><img src="https://avatars.githubusercontent.com/u/57391128?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ma'hmmoud Kinawy</b></sub></a><br /><a href="https://github.com/evgomes/supermarket-api/commits?author=mahmmoudkinawy" title="Code">💻</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/arazauk/"><img src="https://avatars.githubusercontent.com/u/22678337?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ahsan Raza</b></sub></a><br /><a href="https://github.com/evgomes/supermarket-api/pulls?q=is%3Apr+reviewed-by%3AAhsanRazaUK" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="https://github.com/dundich"><img src="https://avatars.githubusercontent.com/u/1078713?v=4?s=100" width="100px;" alt=""/><br /><sub><b>dundich</b></sub></a><br /><a href="#ideas-dundich" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/thedon-chris"><img src="https://avatars.githubusercontent.com/u/30728737?v=4?s=100" width="100px;" alt=""/><br /><sub><b>thedon_chris</b></sub></a><br /><a href="https://github.com/evgomes/supermarket-api/issues?q=author%3Athedon-chris" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
