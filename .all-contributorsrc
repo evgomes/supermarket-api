@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "mattbarry",
+      "name": "Matt Barry",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1567119?v=4",
+      "profile": "https://github.com/mattbarry",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "supermarket-api",
+  "projectOwner": "evgomes",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
