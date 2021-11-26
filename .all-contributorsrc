@@ -49,6 +49,15 @@
       "contributions": [
         "review"
       ]
+    },
+    {
+      "login": "dundich",
+      "name": "dundich",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1078713?v=4",
+      "profile": "https://github.com/dundich",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
