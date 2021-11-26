@@ -94,6 +94,15 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "miki-nis",
+      "name": "miki-nis",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12809735?v=4",
+      "profile": "https://github.com/miki-nis",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
