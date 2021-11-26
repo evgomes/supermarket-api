@@ -76,6 +76,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "eric-wilson",
+      "name": "Eric Wilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3632968?v=4",
+      "profile": "https://www.geekcafe.com",
+      "contributions": [
+        "question"
+      ]
     }
   ],
   "contributorsPerLine": 7,
