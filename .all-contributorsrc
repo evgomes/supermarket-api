@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "mahmmoudkinawy",
+      "name": "Ma'hmmoud Kinawy",
+      "avatar_url": "https://avatars.githubusercontent.com/u/57391128?v=4",
+      "profile": "https://www.linkedin.com/in/mahmmoud-kinawy-7928b218a/",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "supermarket-api",
+  "projectOwner": "evgomes",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
