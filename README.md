@@ -1,6 +1,6 @@
 # Supermarket API
 
-Simple RESTful API built with ASP.NET Core 3.1 to show how to create RESTful services using a decoupled, maintainable architecture.
+Simple RESTful API built with ASP.NET 5 to show how to create RESTful services using a decoupled, maintainable architecture.
 
 ## Changes list
 
@@ -36,7 +36,7 @@ If you want to download the original code showed on the tutorial, download the [
   - First version of the example API, presented in the tutorial on [Medium](https://medium.com/free-code-camp/an-awesome-guide-on-how-to-build-restful-apis-with-asp-net-core-87b818123e28) and [freeCodeCamp](https://www.freecodecamp.org/news/an-awesome-guide-on-how-to-build-restful-apis-with-asp-net-core-87b818123e28/).
 
 ## Frameworks and Libraries
-- [ASP.NET Core 2.2](https://docs.microsoft.com/pt-br/aspnet/core/?view=aspnetcore-2.2);
+- [ASP.NET 5](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-5.0);
 - [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/) (for data access);
 - [Entity Framework In-Memory Provider](https://docs.microsoft.com/en-us/ef/core/miscellaneous/testing/in-memory) (for testing purposes);
 - [AutoMapper](https://automapper.org/) (for mapping resources and models);
@@ -44,7 +44,7 @@ If you want to download the original code showed on the tutorial, download the [
 
 ## How to Test
 
-First, install [.NET Core 2.2](https://dotnet.microsoft.com/download/dotnet-core/2.2). Then, open the terminal or command prompt at the API root path (```/src/Supermarket.API/```) and run the following commands, in sequence:
+First, install [.NET 5](https://dotnet.microsoft.com/download/dotnet/5.0). Then, open the terminal or command prompt at the API root path (```/src/Supermarket.API/```) and run the following commands, in sequence:
 
 ```
 dotnet restore
@@ -53,8 +53,6 @@ dotnet run
 
 Navigate to ```https://localhost:5001/api/categories``` to check if the API is working. If you see a HTTPS security error, just add an exception to see the results.
 
-Navigate to ```https://localhost:5001/swagger``` to check the API documentation.
+Navigate to ```https://localhost:5001/swagger``` to check the API documentation and to test all API endpoints.
 
 ![API Documentation](https://raw.githubusercontent.com/evgomes/supermarket-api/master/images/swagger.png)
-
-To test all endpoints, you'll need to use a software such as [Postman](https://www.getpostman.com/).
