@@ -6,6 +6,33 @@
   "commit": false,
   "contributors": [
     {
+      "login": "mattbarry",
+      "name": "Matt Barry",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1567119?v=4",
+      "profile": "https://github.com/mattbarry",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "hippieZhou",
+      "name": "hippie",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13598361?v=4",
+      "profile": "https://hippiezhou.fun",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "NoobInTraining",
+      "name": "NoobInTraining",
+      "avatar_url": "https://avatars.githubusercontent.com/u/23185961?v=4",
+      "profile": "https://github.com/NoobInTraining",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
       "login": "mahmmoudkinawy",
       "name": "Ma'hmmoud Kinawy",
       "avatar_url": "https://avatars.githubusercontent.com/u/57391128?v=4",
