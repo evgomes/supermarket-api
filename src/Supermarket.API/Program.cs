@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Supermarket.API.Persistence.Contexts;
 
 namespace Supermarket.API
@@ -9,17 +12,23 @@ namespace Supermarket.API
 #pragma warning disable CS1591
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-
-            using (var scope = host.Services.CreateScope())
-            using (var context = scope.ServiceProvider.GetService<AppDbContext>())
+            using var scope = host.Services.CreateScope();
+            var services = scope.ServiceProvider;
+            try
             {
-                context.Database.EnsureCreated();
+                var context = services.GetRequiredService<AppDbContext>();
+                await SeedData.Seed(context);
+            }
+            catch (Exception ex)
+            {
+                var logger = services.GetRequiredService<ILogger<Program>>();
+                logger.LogError(ex, "An error occured during Seeding Data");
             }
 
-            host.Run();
+            await host.RunAsync();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

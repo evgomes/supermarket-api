@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -9,10 +8,7 @@ using Supermarket.API.Resources;
 
 namespace Supermarket.API.Controllers
 {
-    [Route("/api/products")]
-    [Produces("application/json")]
-    [ApiController]
-    public class ProductsController : Controller
+    public class ProductsController : BaseApiController
     {
         private readonly IProductService _productService;
         private readonly IMapper _mapper;

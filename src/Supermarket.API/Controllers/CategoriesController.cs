@@ -8,10 +8,7 @@ using Supermarket.API.Resources;
 
 namespace Supermarket.API.Controllers
 {
-    [Route("/api/categories")]
-    [Produces("application/json")]
-    [ApiController]
-    public class CategoriesController : Controller
+    public class CategoriesController : BaseApiController
     {
         private readonly ICategoryService _categoryService;
         private readonly IMapper _mapper;
