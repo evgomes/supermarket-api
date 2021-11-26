@@ -1,6 +1,6 @@
 # Supermarket API
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Simple RESTful API built with ASP.NET 5 to show how to create RESTful services using a decoupled, maintainable architecture.
@@ -81,6 +81,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/subhanisyed17"><img src="https://avatars.githubusercontent.com/u/46715997?v=4?s=100" width="100px;" alt=""/><br /><sub><b>subhanisyed17</b></sub></a><br /><a href="https://github.com/evgomes/supermarket-api/issues?q=author%3Asubhanisyed17" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://www.geekcafe.com"><img src="https://avatars.githubusercontent.com/u/3632968?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Eric Wilson</b></sub></a><br /><a href="#question-eric-wilson" title="Answering Questions">💬</a></td>
     <td align="center"><a href="https://github.com/Pham-Tuan-Phat"><img src="https://avatars.githubusercontent.com/u/61822642?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Phạm Tuấn Phát</b></sub></a><br /><a href="#ideas-Pham-Tuan-Phat" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/miki-nis"><img src="https://avatars.githubusercontent.com/u/12809735?v=4?s=100" width="100px;" alt=""/><br /><sub><b>miki-nis</b></sub></a><br /><a href="https://github.com/evgomes/supermarket-api/issues?q=author%3Amiki-nis" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
