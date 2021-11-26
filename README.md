@@ -72,6 +72,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://hippiezhou.fun"><img src="https://avatars.githubusercontent.com/u/13598361?v=4?s=100" width="100px;" alt=""/><br /><sub><b>hippie</b></sub></a><br /><a href="https://github.com/evgomes/supermarket-api/commits?author=hippieZhou" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/mattbarry"><img src="https://avatars.githubusercontent.com/u/1567119?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Matt Barry</b></sub></a><br /><a href="https://github.com/evgomes/supermarket-api/commits?author=mattbarry" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/NoobInTraining"><img src="https://avatars.githubusercontent.com/u/23185961?v=4?s=100" width="100px;" alt=""/><br /><sub><b>NoobInTraining</b></sub></a><br /><a href="https://github.com/evgomes/supermarket-api/commits?author=NoobInTraining" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/mahmmoud-kinawy-7928b218a/"><img src="https://avatars.githubusercontent.com/u/57391128?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ma'hmmoud Kinawy</b></sub></a><br /><a href="https://github.com/evgomes/supermarket-api/commits?author=mahmmoudkinawy" title="Code">💻</a></td>
   </tr>
 </table>
 
