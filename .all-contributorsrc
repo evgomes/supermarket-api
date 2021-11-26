@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "AhsanRazaUK",
+      "name": "Ahsan Raza",
+      "avatar_url": "https://avatars.githubusercontent.com/u/22678337?v=4",
+      "profile": "https://www.linkedin.com/in/arazauk/",
+      "contributions": [
+        "review"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "supermarket-api",
+  "projectOwner": "evgomes",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
