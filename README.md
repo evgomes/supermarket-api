@@ -1,4 +1,7 @@
 # Supermarket API
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Simple RESTful API built with ASP.NET 5 to show how to create RESTful services using a decoupled, maintainable architecture.
 
@@ -56,3 +59,23 @@ Navigate to ```https://localhost:5001/api/categories``` to check if the API is w
 Navigate to ```https://localhost:5001/swagger``` to check the API documentation and to test all API endpoints.
 
 ![API Documentation](https://raw.githubusercontent.com/evgomes/supermarket-api/master/images/swagger.png)
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://www.linkedin.com/in/mahmmoud-kinawy-7928b218a/"><img src="https://avatars.githubusercontent.com/u/57391128?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ma'hmmoud Kinawy</b></sub></a><br /><a href="https://github.com/evgomes/supermarket-api/commits?author=mahmmoudkinawy" title="Code">💻</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
