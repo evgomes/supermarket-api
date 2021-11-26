@@ -85,6 +85,15 @@
       "contributions": [
         "question"
       ]
+    },
+    {
+      "login": "Pham-Tuan-Phat",
+      "name": "Phạm Tuấn Phát",
+      "avatar_url": "https://avatars.githubusercontent.com/u/61822642?v=4",
+      "profile": "https://github.com/Pham-Tuan-Phat",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
