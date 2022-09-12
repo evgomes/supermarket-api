@@ -1,6 +1,8 @@
+using Supermarket.API.Domain.Models.Abstract;
+
 namespace Supermarket.API.Domain.Services.Communication
 {
-    public abstract class BaseResponse<T>
+    public abstract class BaseResponse<T> where T : BaseEntity
     {
         public bool Success { get; private set; }
         public string Message { get; private set; }
