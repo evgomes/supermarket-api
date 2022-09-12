@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Supermarket.API.Domain.Models;
 using Supermarket.API.Domain.Models.Queries;
@@ -11,20 +12,15 @@ namespace Supermarket.API.Controllers
     public class ProductsController : BaseApiController
     {
         private readonly IProductService _productService;
-        private readonly IMapper _mapper;
 
-        public ProductsController(IProductService productService, IMapper mapper)
-        {
-            _productService = productService;
-            _mapper = mapper;
-        }
+        public ProductsController(IProductService productService) => (_productService) = (productService);
 
         /// <summary>
         /// Lists all existing products.
         /// </summary>
         /// <returns>List of products.</returns>
         [HttpGet]
-        [ProducesResponseType(typeof(QueryResultResource<ProductResource>), 200)]
+        [ProducesResponseType(typeof(QueryResultResource<ProductResource>), StatusCodes.Status200OK)]
         public async Task<QueryResultResource<ProductResource>> ListAsync([FromQuery] ProductsQueryResource query)
         {
             var productsQuery = _mapper.Map<ProductsQueryResource, ProductsQuery>(query);
@@ -40,8 +36,8 @@ namespace Supermarket.API.Controllers
         /// <param name="resource">Product data.</param>
         /// <returns>Response for the request.</returns>
         [HttpPost]
-        [ProducesResponseType(typeof(ProductResource), 201)]
-        [ProducesResponseType(typeof(ErrorResource), 400)]
+        [ProducesResponseType(typeof(ProductResource), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ErrorResource), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> PostAsync([FromBody] SaveProductResource resource)
         {
             var product = _mapper.Map<SaveProductResource, Product>(resource);
@@ -63,8 +59,8 @@ namespace Supermarket.API.Controllers
         /// <param name="resource">Product data.</param>
         /// <returns>Response for the request.</returns>
         [HttpPut("{id}")]
-        [ProducesResponseType(typeof(ProductResource), 201)]
-        [ProducesResponseType(typeof(ErrorResource), 400)]
+        [ProducesResponseType(typeof(ProductResource), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ErrorResource), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> PutAsync(int id, [FromBody] SaveProductResource resource)
         {
             var product = _mapper.Map<SaveProductResource, Product>(resource);
@@ -85,8 +81,8 @@ namespace Supermarket.API.Controllers
         /// <param name="id">Product identifier.</param>
         /// <returns>Response for the request.</returns>
         [HttpDelete("{id}")]
-        [ProducesResponseType(typeof(ProductResource), 200)]
-        [ProducesResponseType(typeof(ErrorResource), 400)]
+        [ProducesResponseType(typeof(ProductResource), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResource), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> DeleteAsync(int id)
         {
             var result = await _productService.DeleteAsync(id).ConfigureAwait(false);

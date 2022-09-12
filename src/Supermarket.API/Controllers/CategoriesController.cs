@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Supermarket.API.Domain.Models;
 using Supermarket.API.Domain.Services;
@@ -11,20 +12,15 @@ namespace Supermarket.API.Controllers
     public class CategoriesController : BaseApiController
     {
         private readonly ICategoryService _categoryService;
-        private readonly IMapper _mapper;
 
-        public CategoriesController(ICategoryService categoryService, IMapper mapper)
-        {
-            _categoryService = categoryService;
-            _mapper = mapper;
-        }
+        public CategoriesController(ICategoryService categoryService) => (_categoryService) = (categoryService);
 
         /// <summary>
         /// Lists all categories.
         /// </summary>
         /// <returns>List os categories.</returns>
         [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<CategoryResource>), 200)]
+        [ProducesResponseType(typeof(IEnumerable<CategoryResource>), StatusCodes.Status200OK)]
         public async Task<IEnumerable<CategoryResource>> ListAsync()
         {
             var categories = await _categoryService.ListAsync().ConfigureAwait(false);
@@ -39,8 +35,8 @@ namespace Supermarket.API.Controllers
         /// <param name="resource">Category data.</param>
         /// <returns>Response for the request.</returns>
         [HttpPost]
-        [ProducesResponseType(typeof(CategoryResource), 201)]
-        [ProducesResponseType(typeof(ErrorResource), 400)]
+        [ProducesResponseType(typeof(CategoryResource), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ErrorResource), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> PostAsync([FromBody] SaveCategoryResource resource)
         {
             var category = _mapper.Map<SaveCategoryResource, Category>(resource);
@@ -62,8 +58,8 @@ namespace Supermarket.API.Controllers
         /// <param name="resource">Updated category data.</param>
         /// <returns>Response for the request.</returns>
         [HttpPut("{id}")]
-        [ProducesResponseType(typeof(CategoryResource), 200)]
-        [ProducesResponseType(typeof(ErrorResource), 400)]
+        [ProducesResponseType(typeof(CategoryResource), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResource), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> PutAsync(int id, [FromBody] SaveCategoryResource resource)
         {
             var category = _mapper.Map<SaveCategoryResource, Category>(resource);
@@ -84,8 +80,8 @@ namespace Supermarket.API.Controllers
         /// <param name="id">Category identifier.</param>
         /// <returns>Response for the request.</returns>
         [HttpDelete("{id}")]
-        [ProducesResponseType(typeof(CategoryResource), 200)]
-        [ProducesResponseType(typeof(ErrorResource), 400)]
+        [ProducesResponseType(typeof(CategoryResource), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResource), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> DeleteAsync(int id)
         {
             var result = await _categoryService.DeleteAsync(id).ConfigureAwait(false);
