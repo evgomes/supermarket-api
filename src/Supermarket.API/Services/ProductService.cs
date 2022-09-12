@@ -31,10 +31,10 @@ namespace Supermarket.API.Services
             // items per page. I have to compose a cache to avoid returning wrong data.
             string cacheKey = GetCacheKeyForProductsQuery(query);
             
-            var products = await _cache.GetOrCreateAsync(cacheKey, (entry) => {
+            var products = await _cache.GetOrCreateAsync(cacheKey, async (entry) => {
                 entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(1);
-                return _productRepository.ListAsync(query);
-            });
+                return await _productRepository.ListAsync(query).ConfigureAwait(false);
+            }).ConfigureAwait(false);
 
             return products;
         }
@@ -48,12 +48,12 @@ namespace Supermarket.API.Services
                  You can create a method into the CategoryService class to return the category and inject the service here if you prefer, but 
                  it doesn't matter given the API scope.
                 */
-                var existingCategory = await _categoryRepository.FindByIdAsync(product.CategoryId);
+                var existingCategory = await _categoryRepository.FindByIdAsync(product.CategoryId).ConfigureAwait(false);
                 if (existingCategory == null)
                     return new ProductResponse("Invalid category.");
 
-                await _productRepository.AddAsync(product);
-                await _unitOfWork.CompleteAsync();
+                await _productRepository.AddAsync(product).ConfigureAwait(false);
+                await _unitOfWork.CompleteAsync().ConfigureAwait(false);
 
                 return new ProductResponse(product);
             }
@@ -66,12 +66,12 @@ namespace Supermarket.API.Services
 
         public async Task<ProductResponse> UpdateAsync(int id, Product product)
         {
-            var existingProduct = await _productRepository.FindByIdAsync(id);
+            var existingProduct = await _productRepository.FindByIdAsync(id).ConfigureAwait(false);
 
             if (existingProduct == null)
                 return new ProductResponse("Product not found.");
 
-            var existingCategory = await _categoryRepository.FindByIdAsync(product.CategoryId);
+            var existingCategory = await _categoryRepository.FindByIdAsync(product.CategoryId).ConfigureAwait(false);
             if (existingCategory == null)
                 return new ProductResponse("Invalid category.");
 
@@ -83,7 +83,7 @@ namespace Supermarket.API.Services
             try
             {
                 _productRepository.Update(existingProduct);
-                await _unitOfWork.CompleteAsync();
+                await _unitOfWork.CompleteAsync().ConfigureAwait(false);
 
                 return new ProductResponse(existingProduct);
             }
@@ -96,7 +96,7 @@ namespace Supermarket.API.Services
 
         public async Task<ProductResponse> DeleteAsync(int id)
         {
-            var existingProduct = await _productRepository.FindByIdAsync(id);
+            var existingProduct = await _productRepository.FindByIdAsync(id).ConfigureAwait(false);
 
             if (existingProduct == null)
                 return new ProductResponse("Product not found.");
@@ -104,7 +104,7 @@ namespace Supermarket.API.Services
             try
             {
                 _productRepository.Remove(existingProduct);
-                await _unitOfWork.CompleteAsync();
+                await _unitOfWork.CompleteAsync().ConfigureAwait(false);
 
                 return new ProductResponse(existingProduct);
             }

@@ -28,7 +28,7 @@ namespace Supermarket.API.Controllers
         public async Task<QueryResultResource<ProductResource>> ListAsync([FromQuery] ProductsQueryResource query)
         {
             var productsQuery = _mapper.Map<ProductsQueryResource, ProductsQuery>(query);
-            var queryResult = await _productService.ListAsync(productsQuery);
+            var queryResult = await _productService.ListAsync(productsQuery).ConfigureAwait(false);
 
             var resource = _mapper.Map<QueryResult<Product>, QueryResultResource<ProductResource>>(queryResult);
             return resource;
@@ -45,7 +45,7 @@ namespace Supermarket.API.Controllers
         public async Task<IActionResult> PostAsync([FromBody] SaveProductResource resource)
         {
             var product = _mapper.Map<SaveProductResource, Product>(resource);
-            var result = await _productService.SaveAsync(product);
+            var result = await _productService.SaveAsync(product).ConfigureAwait(false);
 
             if (!result.Success)
             {
@@ -68,7 +68,7 @@ namespace Supermarket.API.Controllers
         public async Task<IActionResult> PutAsync(int id, [FromBody] SaveProductResource resource)
         {
             var product = _mapper.Map<SaveProductResource, Product>(resource);
-            var result = await _productService.UpdateAsync(id, product);
+            var result = await _productService.UpdateAsync(id, product).ConfigureAwait(false);
 
             if (!result.Success)
             {
@@ -89,7 +89,7 @@ namespace Supermarket.API.Controllers
         [ProducesResponseType(typeof(ErrorResource), 400)]
         public async Task<IActionResult> DeleteAsync(int id)
         {
-            var result = await _productService.DeleteAsync(id);
+            var result = await _productService.DeleteAsync(id).ConfigureAwait(false);
 
             if (!result.Success)
             {

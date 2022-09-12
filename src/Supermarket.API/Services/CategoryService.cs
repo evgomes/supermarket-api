@@ -10,6 +10,11 @@ using Supermarket.API.Infrastructure;
 
 namespace Supermarket.API.Services
 {
+
+    /*
+     * (ConfigureAwait(false)) resource: https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.configureawait?view=net-6.0
+     * When an asynchronous method awaits a Task directly, continuation usually occurs in the same thread that created the task, depending on the async context. This behavior can be costly in terms of performance and can result in a deadlock on the UI thread. To avoid these problems, call Task.ConfigureAwait(false). For more information, see ConfigureAwait FAQ.   
+     */
     public class CategoryService : ICategoryService
     {
         private readonly ICategoryRepository _categoryRepository;
@@ -27,10 +32,10 @@ namespace Supermarket.API.Services
         {
             // Here I try to get the categories list from the memory cache. If there is no data in cache, the anonymous method will be
             // called, setting the cache to expire one minute ahead and returning the Task that lists the categories from the repository.
-            var categories = await _cache.GetOrCreateAsync(CacheKeys.CategoriesList, (entry) => {
+            var categories = await _cache.GetOrCreateAsync(CacheKeys.CategoriesList, async (entry) => {
                 entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(1);
-                return _categoryRepository.ListAsync();
-            });
+                return await _categoryRepository.ListAsync().ConfigureAwait(false);
+            }).ConfigureAwait(false);
             
             return categories;
         }
@@ -39,8 +44,8 @@ namespace Supermarket.API.Services
         {
             try
             {
-                await _categoryRepository.AddAsync(category);
-                await _unitOfWork.CompleteAsync();
+                await _categoryRepository.AddAsync(category).ConfigureAwait(false);
+                await _unitOfWork.CompleteAsync().ConfigureAwait(false);
 
                 return new CategoryResponse(category);
             }
@@ -53,7 +58,7 @@ namespace Supermarket.API.Services
 
         public async Task<CategoryResponse> UpdateAsync(int id, Category category)
         {
-            var existingCategory = await _categoryRepository.FindByIdAsync(id);
+            var existingCategory = await _categoryRepository.FindByIdAsync(id).ConfigureAwait(false);
 
             if (existingCategory == null)
                 return new CategoryResponse("Category not found.");
@@ -62,7 +67,7 @@ namespace Supermarket.API.Services
 
             try
             {
-                await _unitOfWork.CompleteAsync();
+                await _unitOfWork.CompleteAsync().ConfigureAwait(false);
 
                 return new CategoryResponse(existingCategory);
             }
@@ -75,7 +80,7 @@ namespace Supermarket.API.Services
 
         public async Task<CategoryResponse> DeleteAsync(int id)
         {
-            var existingCategory = await _categoryRepository.FindByIdAsync(id);
+            var existingCategory = await _categoryRepository.FindByIdAsync(id).ConfigureAwait(false);
 
             if (existingCategory == null)
                 return new CategoryResponse("Category not found.");
@@ -83,7 +88,7 @@ namespace Supermarket.API.Services
             try
             {
                 _categoryRepository.Remove(existingCategory);
-                await _unitOfWork.CompleteAsync();
+                await _unitOfWork.CompleteAsync().ConfigureAwait(false);
 
                 return new CategoryResponse(existingCategory);
             }
