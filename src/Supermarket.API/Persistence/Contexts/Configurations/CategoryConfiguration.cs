@@ -4,7 +4,7 @@ using Supermarket.API.Domain.Models;
 
 namespace Supermarket.API.Persistence.Contexts.Configurations
 {
-    public class CategoryConfiguration : IEntityTypeConfiguration<Category>
+    public class CategoryConfiguration : BaseConfiguration<Category>
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
@@ -13,6 +13,8 @@ namespace Supermarket.API.Persistence.Contexts.Configurations
             builder.Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();//.HasValueGenerator<InMemoryIntegerValueGenerator<int>>();
             builder.Property(p => p.Name).IsRequired().HasMaxLength(30);
             builder.HasMany(p => p.Products).WithOne(p => p.Category).HasForeignKey(p => p.CategoryId);
+
+            base.Configure(builder);
         }
     }
 }

@@ -1,8 +1,9 @@
+using Supermarket.API.Domain.Models.Abstract;
+
 namespace Supermarket.API.Domain.Models
 {
-    public class Product
+    public class Product: BaseEntity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public short QuantityInPackage { get; set; }
         public EUnitOfMeasurement UnitOfMeasurement { get; set; }
