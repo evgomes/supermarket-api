@@ -13,7 +13,7 @@ I am not a professional writer, and I didn't have prior experience writing techn
 
 Since then, I have been working on other interesting projects and concepts, and I try to share new things that I learn here on GitHub as frequently as I can. However, I haven't written any other articles due to personal life reasons and my work schedule.
 
-I'm planning to start my own tech blog soon. The acceptance I received from this article, the interactions here on GitHub, and people contacting me requesting more articles and asking for help with coding, in general, have motivated me to do it. I can't give you an exact date for this to happen, but I can tell you that the blog is already in development. For now, if you have any suggestions on topics you would like to read, both on .NET stuff or other technologies, please send a message to me, and I will consider your request. You can find my email in my GitHub profile bio.
+I'm planning to start a tech blog soon. The acceptance I received from this article, the interactions here on GitHub, and people contacting me requesting more articles and asking for help with coding, in general, have motivated me to do it. I can't give you an exact date for this to happen, but I can tell you that the blog is already in development. For now, if you have any suggestions on topics you would like to read, both on .NET stuff or other technologies, please send a message to me, and I will consider your request. You can find my email in my GitHub profile bio.
 
 For now, I'm updating this API and other projects I shared on GitHub to match the most recent versions of C# and .NET. If you want a reference to build full-stack .NET applications using a better architectural approach, and that uses modern tools and frameworks such as Docker and Blazor, please [refer to this other repository that I created](https://github.com/evgomes/net-core-notes).
 
@@ -43,7 +43,7 @@ If you want to download the original code showed on the tutorial, download the [
     - Refactored logic to seed database data and to apply entity type configuration for application models.
 
 - 1.3.0 *[December 15, 2019]*
-	- Updated ASP.NET Core version to 3.1, fixed issues related to InMemoryProvider, updated Swagger (see [#5](https://github.com/evgomes/supermarket-api/pull/5));
+	- Updated ASP.NET Core version to 3.1, fixed issues related to InMemoryProvider, updated Swagger (see [#5](https://github.com/evgomes/supermarket-api/pull/5)).
 	- Fixed paging calculation mistake, updated descriptions, updated "launchSettings.json" to open Swagger on running the application.
 
 - 1.2.1 *[August 11, 2019]*
@@ -54,9 +54,9 @@ If you want to download the original code showed on the tutorial, download the [
 
 - 1.1.0 *[June 18, 2019]*
 
-  - Added Swagger documentation through [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle);
-  - Added cache through native [IMemoryCache](https://docs.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-2.2);
-  - Changed products listing to allow filtering by category ID, to show how to perform specific queries with EF Core;
+  - Added Swagger documentation through [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle).
+  - Added cache through native [IMemoryCache](https://docs.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-2.2).
+  - Changed products listing to allow filtering by category ID, to show how to perform specific queries with EF Core.
   - Changed ModelState validation to use *ApiController* attribute and *InvalidResponseFactory* in *Startup*.
 
 - 1.0.0 *[February 4, 2019]*
@@ -64,10 +64,10 @@ If you want to download the original code showed on the tutorial, download the [
   - First version of the example API, presented in the tutorial on [Medium](https://medium.com/free-code-camp/an-awesome-guide-on-how-to-build-restful-apis-with-asp-net-core-87b818123e28) and [freeCodeCamp](https://www.freecodecamp.org/news/an-awesome-guide-on-how-to-build-restful-apis-with-asp-net-core-87b818123e28/).
 
 ## Frameworks and Libraries
-- [ASP.NET Core 7](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-7.0);
-- [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/) (for data access);
-- [Entity Framework In-Memory Provider](https://docs.microsoft.com/en-us/ef/core/miscellaneous/testing/in-memory) (for testing purposes);
-- [AutoMapper](https://automapper.org/) (for mapping resources and models);
+- [ASP.NET Core 7](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-7.0).
+- [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/) (for data access).
+- [Entity Framework In-Memory Provider](https://docs.microsoft.com/en-us/ef/core/miscellaneous/testing/in-memory) (for testing purposes).
+- [AutoMapper](https://automapper.org/) (for mapping resources and models).
 - [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle) (API documentation).
 
 ## How to Test
