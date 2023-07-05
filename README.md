@@ -72,7 +72,7 @@ If you want to download the original code showed on the tutorial, download the [
 
 ## How to Test
 
-First, install [.NET 5](https://dotnet.microsoft.com/download/dotnet/5.0). Then, open the terminal or command prompt at the API root path (```/src/Supermarket.API/```) and run the following commands, in sequence:
+First, download and install the [.NET Core SDK](https://dotnet.microsoft.com/en-us/download). Then, open the terminal or command prompt at the API root path (```/src/Supermarket.API/```) and run the following commands, in sequence:
 
 ```
 dotnet restore
