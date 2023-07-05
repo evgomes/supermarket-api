@@ -1,4 +1,3 @@
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Supermarket.API.Extensions;
 using Supermarket.API.Resources;

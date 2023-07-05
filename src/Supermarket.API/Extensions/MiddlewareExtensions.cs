@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
-using System;
-using System.IO;
+﻿using Microsoft.OpenApi.Models;
 using System.Reflection;
 
 namespace Supermarket.API.Extensions

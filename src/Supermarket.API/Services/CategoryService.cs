@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
 using Supermarket.API.Domain.Models;
 using Supermarket.API.Domain.Repositories;
@@ -35,28 +32,28 @@ namespace Supermarket.API.Services
             return categories;
         }
 
-        public async Task<CategoryResponse> SaveAsync(Category category)
+        public async Task<Response<Category>> SaveAsync(Category category)
         {
             try
             {
                 await _categoryRepository.AddAsync(category);
                 await _unitOfWork.CompleteAsync();
 
-                return new CategoryResponse(category);
+                return new Response<Category>(category);
             }
             catch (Exception ex)
             {
                 // Do some logging stuff
-                return new CategoryResponse($"An error occurred when saving the category: {ex.Message}");
+                return new Response<Category>($"An error occurred when saving the category: {ex.Message}");
             }
         }
 
-        public async Task<CategoryResponse> UpdateAsync(int id, Category category)
+        public async Task<Response<Category>> UpdateAsync(int id, Category category)
         {
             var existingCategory = await _categoryRepository.FindByIdAsync(id);
 
             if (existingCategory == null)
-                return new CategoryResponse("Category not found.");
+                return new Response<Category>("Category not found.");
 
             existingCategory.Name = category.Name;
 
@@ -64,33 +61,33 @@ namespace Supermarket.API.Services
             {
                 await _unitOfWork.CompleteAsync();
 
-                return new CategoryResponse(existingCategory);
+                return new Response<Category>(existingCategory);
             }
             catch (Exception ex)
             {
                 // Do some logging stuff
-                return new CategoryResponse($"An error occurred when updating the category: {ex.Message}");
+                return new Response<Category>($"An error occurred when updating the category: {ex.Message}");
             }
         }
 
-        public async Task<CategoryResponse> DeleteAsync(int id)
+        public async Task<Response<Category>> DeleteAsync(int id)
         {
             var existingCategory = await _categoryRepository.FindByIdAsync(id);
 
             if (existingCategory == null)
-                return new CategoryResponse("Category not found.");
+                return new Response<Category>("Category not found.");
 
             try
             {
                 _categoryRepository.Remove(existingCategory);
                 await _unitOfWork.CompleteAsync();
 
-                return new CategoryResponse(existingCategory);
+                return new Response<Category>(existingCategory);
             }
             catch (Exception ex)
             {
                 // Do some logging stuff
-                return new CategoryResponse($"An error occurred when deleting the category: {ex.Message}");
+                return new Response<Category>($"An error occurred when deleting the category: {ex.Message}");
             }
         }
     }

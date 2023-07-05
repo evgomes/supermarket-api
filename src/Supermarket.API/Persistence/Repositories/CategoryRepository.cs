@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Supermarket.API.Domain.Models;
 using Supermarket.API.Domain.Repositories;

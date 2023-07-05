@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Supermarket.API.Domain.Models
 {
     public class Category

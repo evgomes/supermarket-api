@@ -7,6 +7,5 @@ namespace Supermarket.API.Controllers
     [ApiController]
     public class BaseApiController : ControllerBase
     {
-
     }
 }
