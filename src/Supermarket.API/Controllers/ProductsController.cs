@@ -1,8 +1,5 @@
-using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Supermarket.API.Domain.Models;
-using Supermarket.API.Domain.Models.Queries;
 using Supermarket.API.Domain.Services;
 using Supermarket.API.Resources;
 
@@ -20,18 +17,17 @@ namespace Supermarket.API.Controllers
         }
 
         /// <summary>
-        /// Lists all existing products.
+        /// Lists all existing products according to query filters.
         /// </summary>
         /// <returns>List of products.</returns>
         [HttpGet]
         [ProducesResponseType(typeof(QueryResultResource<ProductResource>), 200)]
         public async Task<QueryResultResource<ProductResource>> ListAsync([FromQuery] ProductsQueryResource query)
         {
-            var productsQuery = _mapper.Map<ProductsQueryResource, ProductsQuery>(query);
+            var productsQuery = _mapper.Map<ProductsQuery>(query);
             var queryResult = await _productService.ListAsync(productsQuery);
 
-            var resource = _mapper.Map<QueryResult<Product>, QueryResultResource<ProductResource>>(queryResult);
-            return resource;
+            return _mapper.Map<QueryResultResource<ProductResource>>(queryResult);
         }
 
         /// <summary>
@@ -44,15 +40,15 @@ namespace Supermarket.API.Controllers
         [ProducesResponseType(typeof(ErrorResource), 400)]
         public async Task<IActionResult> PostAsync([FromBody] SaveProductResource resource)
         {
-            var product = _mapper.Map<SaveProductResource, Product>(resource);
+            var product = _mapper.Map<Product>(resource);
             var result = await _productService.SaveAsync(product);
 
             if (!result.Success)
             {
-                return BadRequest(new ErrorResource(result.Message));
+                return BadRequest(new ErrorResource(result.Message!));
             }
 
-            var productResource = _mapper.Map<Product, ProductResource>(result.Resource);
+            var productResource = _mapper.Map<ProductResource>(result.Resource!);
             return Ok(productResource);
         }
 
@@ -67,15 +63,15 @@ namespace Supermarket.API.Controllers
         [ProducesResponseType(typeof(ErrorResource), 400)]
         public async Task<IActionResult> PutAsync(int id, [FromBody] SaveProductResource resource)
         {
-            var product = _mapper.Map<SaveProductResource, Product>(resource);
+            var product = _mapper.Map<Product>(resource);
             var result = await _productService.UpdateAsync(id, product);
 
             if (!result.Success)
             {
-                return BadRequest(new ErrorResource(result.Message));
+                return BadRequest(new ErrorResource(result.Message!));
             }
 
-            var productResource = _mapper.Map<Product, ProductResource>(result.Resource);
+            var productResource = _mapper.Map<ProductResource>(result.Resource!);
             return Ok(productResource);
         }
 
@@ -93,10 +89,10 @@ namespace Supermarket.API.Controllers
 
             if (!result.Success)
             {
-                return BadRequest(new ErrorResource(result.Message));
+                return BadRequest(new ErrorResource(result.Message!));
             }
 
-            var categoryResource = _mapper.Map<Product, ProductResource>(result.Resource);
+            var categoryResource = _mapper.Map<ProductResource>(result.Resource!);
             return Ok(categoryResource);
         }
     }

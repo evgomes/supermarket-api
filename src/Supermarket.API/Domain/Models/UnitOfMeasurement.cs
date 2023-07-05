@@ -2,7 +2,7 @@ using System.ComponentModel;
 
 namespace Supermarket.API.Domain.Models
 {
-    public enum EUnitOfMeasurement : byte
+    public enum UnitOfMeasurement : byte
     {
         [Description("UN")]
         Unity = 1,

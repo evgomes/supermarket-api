@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Supermarket.API.Domain.Models;
 
 namespace Supermarket.API.Persistence.Contexts.Configurations
 {

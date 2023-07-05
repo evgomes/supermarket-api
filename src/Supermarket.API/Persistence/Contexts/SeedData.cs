@@ -1,7 +1,3 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Supermarket.API.Domain.Models;
-
 namespace Supermarket.API.Persistence.Contexts
 {
     public static class SeedData
@@ -15,7 +11,7 @@ namespace Supermarket.API.Persistence.Contexts
                     Id = 100,
                     Name = "Apple",
                     QuantityInPackage = 1,
-                    UnitOfMeasurement = EUnitOfMeasurement.Unity,
+                    UnitOfMeasurement = UnitOfMeasurement.Unity,
                     CategoryId = 100
                 },
                 new Product
@@ -23,7 +19,7 @@ namespace Supermarket.API.Persistence.Contexts
                     Id = 101,
                     Name = "Milk",
                     QuantityInPackage = 2,
-                    UnitOfMeasurement = EUnitOfMeasurement.Liter,
+                    UnitOfMeasurement = UnitOfMeasurement.Liter,
                     CategoryId = 101,
                 }
             };

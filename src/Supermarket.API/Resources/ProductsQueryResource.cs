@@ -1,7 +1,7 @@
 namespace Supermarket.API.Resources
 {
-    public class ProductsQueryResource : QueryResource
+    public record ProductsQueryResource : QueryResource
     {
-        public int? CategoryId { get; set; }
+        public int? CategoryId { get; init; }
     }
 }

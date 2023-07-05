@@ -1,8 +1,8 @@
 namespace Supermarket.API.Resources
 {
-    public class CategoryResource
+    public record CategoryResource
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int Id { get; init; }
+        public string Name { get; init; } = null!;
     }
 }

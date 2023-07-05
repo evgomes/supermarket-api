@@ -1,7 +1,4 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Supermarket.API.Domain.Models;
 using Supermarket.API.Domain.Repositories;
 using Supermarket.API.Persistence.Contexts;
 
@@ -26,7 +23,7 @@ namespace Supermarket.API.Persistence.Repositories
             await _context.Categories.AddAsync(category);
         }
 
-        public async Task<Category> FindByIdAsync(int id)
+        public async Task<Category?> FindByIdAsync(int id)
         {
             return await _context.Categories.FindAsync(id);
         }

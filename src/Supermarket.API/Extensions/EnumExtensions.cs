@@ -1,16 +1,22 @@
 using System.ComponentModel;
-using System.Reflection;
 
 namespace Supermarket.API.Extensions
 {
     public static class EnumExtensions
     {
-        public static string ToDescriptionString<TEnum>(this TEnum @enum)
+        public static string ToDescriptionString<TEnum>(this TEnum? value) where TEnum : Enum
         {
-            FieldInfo info = @enum.GetType().GetField(@enum.ToString());
-            var attributes = (DescriptionAttribute[])info.GetCustomAttributes(typeof(DescriptionAttribute), false);
+            if(value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
 
-            return attributes?[0].Description ?? @enum.ToString();
+            var valueAsString = value.ToString();
+            var valueType = value.GetType();
+            var fieldInfo = valueType.GetField(valueAsString)!;
+            var attributes = (DescriptionAttribute[])fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false);
+
+            return attributes?[0].Description ?? valueAsString;
         }
     }
 }
