@@ -3,13 +3,38 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-Simple RESTful API built with ASP.NET 5 to show how to create RESTful services using a decoupled, maintainable architecture.
+Simple RESTful API built with ASP.NET Core 7 to show how to create RESTful services using a decoupled, maintainable architecture.
+
+## A message from the author (July 5, 2023)
+
+Hello, guys. It's been a while since I wrote the first version of this API and published the article on Medium and freeCodeCamp. My intention when I first wrote the API was to share knowledge on how to build applications in ASP.NET Core using patterns that I applied in my daily job and that I learned from many teaching sources.
+
+I am not a professional writer, and I didn't have prior experience writing technical stuff, so I was happy to see the acceptance that my article received after its publication. I received lots of feedback from developers thanking me for the article and the knowledge that I shared, people asking me for guidance on how to develop features, people requesting articles about other programming concepts and technologies, and critiques from developers more experienced than me on things that I should improve.
+
+Since then, I have been working on other interesting projects and concepts, and I try to share new things that I learn here on GitHub as frequently as I can. However, I haven't written any other articles due to personal life reasons and my work schedule.
+
+I'm planning to start my own tech blog soon. The acceptance I received from this article, the interactions here on GitHub, and people contacting me requesting more articles and asking for help with coding, in general, have motivated me to do it. I can't give you an exact date for this to happen, but I can tell you that the blog is already in development. For now, if you have any suggestions on topics you would like to read, both on .NET stuff or other technologies, please send a message to me, and I will consider your request. You can find my email in my GitHub profile bio.
+
+For now, I'm updating this API and other projects I shared on GitHub to match the most recent versions of C# and .NET. If you want a reference to build full-stack .NET applications using a better architectural approach, and that uses modern tools and frameworks such as Docker and Blazor, please [refer to this other repository that I created](https://github.com/evgomes/net-core-notes).
+
+Please let me know if you have any questions or suggestions regarding this project or any others that I have published. I'm always glad to help and to learn from you.
 
 ## Changes list
 
-Some changes were made to the code presented at the tutorial published on [Medium](https://medium.com/free-code-camp/an-awesome-guide-on-how-to-build-restful-apis-with-asp-net-core-87b818123e28) and [freeCodeCamp](https://www.freecodecamp.org/news/an-awesome-guide-on-how-to-build-restful-apis-with-asp-net-core-87b818123e28/), to make the API code cleaner and to add functionalities that developers may find useful.
+Many changes were made to the code presented at the tutorial published on [Medium](https://medium.com/free-code-camp/an-awesome-guide-on-how-to-build-restful-apis-with-asp-net-core-87b818123e28) and [freeCodeCamp](https://www.freecodecamp.org/news/an-awesome-guide-on-how-to-build-restful-apis-with-asp-net-core-87b818123e28/), to make the API code cleaner and to add functionalities that developers may find useful.
 
 If you want to download the original code showed on the tutorial, download the [1.0.0](https://github.com/evgomes/supermarket-api/releases/tag/1.0.0) tag.
+
+- 2.0.0 *[July 5, 2023]*
+    - Updated .NET version to .NET 7.
+    - Updated AutoMapper, Entity Framework Core, and Swashbuckle dependencies to match .NET 7.
+    - Enabled implicit usings and nullable types.
+    - Added global usings and removed implicit namespaces from the source code. 
+    - Renamed the `UnitOfMeasurement` enum type to make it follow the official naming convention.
+    - Removed `CategoryResponse` and `ProductReponse` types to use a generic `Response<T>` record type instead.
+    - Changed API resources to use record types instead of classes, and to initialize values in an immutable way using `init`.
+    - Added configuration to make all API routes lower-case.
+    - Refactored services to include logging using the standar .NET logging provider and to make code cleaner. 
 
 - 1.4.0 *[November 26, 2021]*
     - Updated .NET version to .NET 5 (see [#11](https://github.com/evgomes/supermarket-api/pull/11))
@@ -39,7 +64,7 @@ If you want to download the original code showed on the tutorial, download the [
   - First version of the example API, presented in the tutorial on [Medium](https://medium.com/free-code-camp/an-awesome-guide-on-how-to-build-restful-apis-with-asp-net-core-87b818123e28) and [freeCodeCamp](https://www.freecodecamp.org/news/an-awesome-guide-on-how-to-build-restful-apis-with-asp-net-core-87b818123e28/).
 
 ## Frameworks and Libraries
-- [ASP.NET 5](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-5.0);
+- [ASP.NET Core 7](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-7.0);
 - [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/) (for data access);
 - [Entity Framework In-Memory Provider](https://docs.microsoft.com/en-us/ef/core/miscellaneous/testing/in-memory) (for testing purposes);
 - [AutoMapper](https://automapper.org/) (for mapping resources and models);
