@@ -21,7 +21,9 @@ namespace Supermarket.API
 
             services.AddCustomSwagger();
 
-            services.AddControllers().ConfigureApiBehaviorOptions(options =>
+			services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
+
+			services.AddControllers().ConfigureApiBehaviorOptions(options =>
             {
                 // Adds a custom error response factory when ModelState is invalid
                 options.InvalidModelStateResponseFactory = InvalidModelStateResponseFactory.ProduceErrorResponse;
@@ -29,7 +31,7 @@ namespace Supermarket.API
 
             services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseInMemoryDatabase(Configuration.GetConnectionString("memory"));
+                options.UseInMemoryDatabase(Configuration.GetConnectionString("memory") ?? "data-in-memory");
             });
 
             services.AddScoped<ICategoryRepository, CategoryRepository>();

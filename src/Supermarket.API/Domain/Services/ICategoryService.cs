@@ -1,4 +1,3 @@
-using Supermarket.API.Domain.Models;
 using Supermarket.API.Domain.Services.Communication;
 
 namespace Supermarket.API.Domain.Services

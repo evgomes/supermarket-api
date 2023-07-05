@@ -1,8 +1,8 @@
 namespace Supermarket.API.Resources
 {
-    public class QueryResource
+    public record QueryResource
     {
-        public int Page { get; set; }
-        public int ItemsPerPage { get; set; }
+        public int Page { get; init; }
+        public int ItemsPerPage { get; init; }
     }
 }

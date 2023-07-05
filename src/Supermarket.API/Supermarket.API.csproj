@@ -4,12 +4,9 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DocumentationFile>bin\Debug\net5.0\Supermarket.API.xml</DocumentationFile>
-		<OutputPath>bin\Debug\net5.0</OutputPath>
-		<NoWarn>1701;1702;1591;</NoWarn>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<DocumentationFile>bin\Debug\net7.0\Supermarket.API.xml</DocumentationFile>
+		<NoWarn>1591</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>

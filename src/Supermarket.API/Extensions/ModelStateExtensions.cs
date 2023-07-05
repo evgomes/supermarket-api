@@ -6,7 +6,7 @@ namespace Supermarket.API.Extensions
     {
         public static List<string> GetErrorMessages(this ModelStateDictionary dictionary)
         {
-            return dictionary.SelectMany(m => m.Value.Errors)
+            return dictionary.SelectMany(m => m.Value!.Errors)
                              .Select(m => m.ErrorMessage)
                              .ToList();
         }

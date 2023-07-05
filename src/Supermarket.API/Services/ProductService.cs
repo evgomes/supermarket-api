@@ -1,6 +1,4 @@
 using Microsoft.Extensions.Caching.Memory;
-using Supermarket.API.Domain.Models;
-using Supermarket.API.Domain.Models.Queries;
 using Supermarket.API.Domain.Repositories;
 using Supermarket.API.Domain.Services;
 using Supermarket.API.Domain.Services.Communication;
@@ -14,13 +12,22 @@ namespace Supermarket.API.Services
 		private readonly ICategoryRepository _categoryRepository;
 		private readonly IUnitOfWork _unitOfWork;
 		private readonly IMemoryCache _cache;
+		private readonly ILogger<ProductService> _logger;
 
-		public ProductService(IProductRepository productRepository, ICategoryRepository categoryRepository, IUnitOfWork unitOfWork, IMemoryCache cache)
+		public ProductService
+		(
+			IProductRepository productRepository,
+			ICategoryRepository categoryRepository,
+			IUnitOfWork unitOfWork,
+			IMemoryCache cache,
+			ILogger<ProductService> logger
+		)
 		{
 			_productRepository = productRepository;
 			_categoryRepository = categoryRepository;
 			_unitOfWork = unitOfWork;
 			_cache = cache;
+			_logger = logger;
 		}
 
 		public async Task<QueryResult<Product>> ListAsync(ProductsQuery query)
@@ -35,7 +42,7 @@ namespace Supermarket.API.Services
 				return _productRepository.ListAsync(query);
 			});
 
-			return products;
+			return products!;
 		}
 
 		public async Task<Response<Product>> SaveAsync(Product product)
@@ -58,7 +65,7 @@ namespace Supermarket.API.Services
 			}
 			catch (Exception ex)
 			{
-				// Do some logging stuff
+				_logger.LogError(ex, "Could not save product.");
 				return new Response<Product>($"An error occurred when saving the product: {ex.Message}");
 			}
 		}
@@ -88,7 +95,7 @@ namespace Supermarket.API.Services
 			}
 			catch (Exception ex)
 			{
-				// Do some logging stuff
+				_logger.LogError(ex, "Could not update product with ID {id}.", id);
 				return new Response<Product>($"An error occurred when updating the product: {ex.Message}");
 			}
 		}
@@ -109,22 +116,14 @@ namespace Supermarket.API.Services
 			}
 			catch (Exception ex)
 			{
-				// Do some logging stuff
+				_logger.LogError(ex, "Could not delete product with ID {id}.", id);
 				return new Response<Product>($"An error occurred when deleting the product: {ex.Message}");
 			}
 		}
 
 		private string GetCacheKeyForProductsQuery(ProductsQuery query)
 		{
-			string key = CacheKeys.ProductsList.ToString();
-
-			if (query.CategoryId.HasValue && query.CategoryId > 0)
-			{
-				key = string.Concat(key, "_", query.CategoryId.Value);
-			}
-
-			key = string.Concat(key, "_", query.Page, "_", query.ItemsPerPage);
-			return key;
+			return $"{CacheKeys.ProductsList}_{query.CategoryId}_{query.Page}_{query.ItemsPerPage}";
 		}
 	}
 }

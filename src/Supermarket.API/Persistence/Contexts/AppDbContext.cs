@@ -1,19 +1,19 @@
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using Supermarket.API.Domain.Models;
 
 namespace Supermarket.API.Persistence.Contexts
 {
-    public class AppDbContext : DbContext
-    {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Product> Products { get; set; }
+	public class AppDbContext : DbContext
+	{
+		public DbSet<Category> Categories { get; set; }
+		public DbSet<Product> Products { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-        }
-    }
+		public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+
+		protected override void OnModelCreating(ModelBuilder builder)
+		{
+			base.OnModelCreating(builder);
+			builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+		}
+	}
 }
