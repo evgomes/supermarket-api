@@ -3,17 +3,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Supermarket.API.Persistence.Contexts
 {
-	public class AppDbContext : DbContext
+	public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 	{
 		public DbSet<Category> Categories { get; set; }
 		public DbSet<Product> Products { get; set; }
 
-		public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-
-		protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			base.OnModelCreating(builder);
-			builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+			base.OnModelCreating(modelBuilder);
+			modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 		}
 	}
 }

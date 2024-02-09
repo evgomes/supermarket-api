@@ -6,16 +6,14 @@ namespace Supermarket.API.Persistence.Contexts
         {
             var products = new List<Product>
             {
-                new Product
-                {
+                new() {
                     Id = 100,
                     Name = "Apple",
                     QuantityInPackage = 1,
                     UnitOfMeasurement = UnitOfMeasurement.Unity,
                     CategoryId = 100
                 },
-                new Product
-                {
+                new() {
                     Id = 101,
                     Name = "Milk",
                     QuantityInPackage = 2,
@@ -26,8 +24,8 @@ namespace Supermarket.API.Persistence.Contexts
 
             var categories = new List<Category>
             {
-                new Category { Id = 100, Name = "Fruits and Vegetables" }, // Id set manually due to in-memory provider
-                new Category { Id = 101, Name = "Dairy" }
+                new() { Id = 100, Name = "Fruits and Vegetables" }, // Id set manually due to in-memory provider
+                new() { Id = 101, Name = "Dairy" }
             };
 
             context.Products.AddRange(products);

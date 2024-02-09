@@ -12,8 +12,8 @@ namespace Supermarket.API.Extensions
                 cfg.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "Supermarket API",
-                    Version = "v4",
-                    Description = "Simple RESTful API built with ASP.NET Core 7 to show how to create RESTful services using a service-oriented architecture.",
+                    Version = "v5",
+                    Description = "Simple RESTful API built with ASP.NET Core to show how to create RESTful services using a service-oriented architecture.",
                     Contact = new OpenApiContact
                     {
                         Name = "Evandro Gayer Gomes",
