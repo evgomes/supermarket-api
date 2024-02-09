@@ -4,29 +4,18 @@ using Supermarket.API.Persistence.Contexts;
 
 namespace Supermarket.API.Persistence.Repositories
 {
-    public class CategoryRepository : BaseRepository, ICategoryRepository
+    public class CategoryRepository(AppDbContext context) : BaseRepository(context), ICategoryRepository
     {
-        public CategoryRepository(AppDbContext context) : base(context) { }
 
+        // "AsNoTracking" tells Entity Framework that it is not necessary to track changes for listed entities. This makes code run faster.
         public async Task<IEnumerable<Category>> ListAsync()
-        {
-            return await _context.Categories
-                                 .AsNoTracking()
-                                 .ToListAsync();
-
-            // AsNoTracking tells EF Core it doesn't need to track changes on listed entities. Disabling entity
-            // tracking makes the code a little faster
-        }
+            => await _context.Categories.AsNoTracking().ToListAsync();
 
         public async Task AddAsync(Category category)
-        {
-            await _context.Categories.AddAsync(category);
-        }
+            => await _context.Categories.AddAsync(category);
 
         public async Task<Category?> FindByIdAsync(int id)
-        {
-            return await _context.Categories.FindAsync(id);
-        }
+            => await _context.Categories.FindAsync(id);
 
         public void Update(Category category)
         {

@@ -15,7 +15,7 @@ namespace Supermarket.API.Resources
         [Required]
         [Range(1, 5)]
         public int UnitOfMeasurement { get; init; }
-        
+
         [Required]
         public int CategoryId { get; init; }
     }
