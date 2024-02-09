@@ -14,7 +14,7 @@ Many changes were made to the code presented at the tutorial published on [Mediu
 
 If you want to download the original code showed on the tutorial, download the [1.0.0](https://github.com/evgomes/supermarket-api/releases/tag/1.0.0) tag.
 
-- 2.1.0 \_[February 9, 2024]
+- 2.1.0 _[February 9, 2024]_
 
   - Updated .NET version to .NET 8.
   - Updated libraries to match the most recent .NET version.
