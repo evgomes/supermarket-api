@@ -6,29 +6,16 @@ using Supermarket.API.Infrastructure;
 
 namespace Supermarket.API.Services
 {
-    public class ProductService : IProductService
+    public class ProductService(
+        IUnitOfWork unitOfWork,
+        IMemoryCache cache,
+        ILogger<ProductService> logger
+        ) : IProductService
     {
-        private readonly IProductRepository _productRepository;
-        private readonly ICategoryRepository _categoryRepository;
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IMemoryCache _cache;
-        private readonly ILogger<ProductService> _logger;
 
-        public ProductService
-        (
-            IProductRepository productRepository,
-            ICategoryRepository categoryRepository,
-            IUnitOfWork unitOfWork,
-            IMemoryCache cache,
-            ILogger<ProductService> logger
-        )
-        {
-            _productRepository = productRepository;
-            _categoryRepository = categoryRepository;
-            _unitOfWork = unitOfWork;
-            _cache = cache;
-            _logger = logger;
-        }
+        private readonly IUnitOfWork _unitOfWork = unitOfWork;
+        private readonly IMemoryCache _cache = cache;
+        private readonly ILogger<ProductService> _logger = logger;
 
         public async Task<QueryResult<Product>> ListAsync(ProductsQuery query)
         {
@@ -39,7 +26,7 @@ namespace Supermarket.API.Services
             var products = await _cache.GetOrCreateAsync(cacheKey, (entry) =>
             {
                 entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(1);
-                return _productRepository.ListAsync(query);
+                return _unitOfWork.ProductRepository.ListAsync(query);
             });
 
             return products!;
@@ -54,11 +41,11 @@ namespace Supermarket.API.Services
                  You can create a method into the CategoryService class to return the category and inject the service here if you prefer, but 
                  it doesn't matter given the API scope.
                 */
-                var existingCategory = await _categoryRepository.FindByIdAsync(product.CategoryId);
+                var existingCategory = await _unitOfWork.CategoryRepository.FindByIdAsync(product.CategoryId);
                 if (existingCategory == null)
                     return new Response<Product>("Invalid category.");
 
-                await _productRepository.AddAsync(product);
+                await _unitOfWork.ProductRepository.AddAsync(product);
                 await _unitOfWork.CompleteAsync();
 
                 return new Response<Product>(product);
@@ -72,12 +59,12 @@ namespace Supermarket.API.Services
 
         public async Task<Response<Product>> UpdateAsync(int id, Product product)
         {
-            var existingProduct = await _productRepository.FindByIdAsync(id);
+            var existingProduct = await _unitOfWork.ProductRepository.FindByIdAsync(id);
 
             if (existingProduct == null)
                 return new Response<Product>("Product not found.");
 
-            var existingCategory = await _categoryRepository.FindByIdAsync(product.CategoryId);
+            var existingCategory = await _unitOfWork.CategoryRepository.FindByIdAsync(product.CategoryId);
             if (existingCategory == null)
                 return new Response<Product>("Invalid category.");
 
@@ -88,7 +75,7 @@ namespace Supermarket.API.Services
 
             try
             {
-                _productRepository.Update(existingProduct);
+                _unitOfWork.ProductRepository.Update(existingProduct);
                 await _unitOfWork.CompleteAsync();
 
                 return new Response<Product>(existingProduct);
@@ -102,14 +89,14 @@ namespace Supermarket.API.Services
 
         public async Task<Response<Product>> DeleteAsync(int id)
         {
-            var existingProduct = await _productRepository.FindByIdAsync(id);
+            var existingProduct = await _unitOfWork.ProductRepository.FindByIdAsync(id);
 
             if (existingProduct == null)
                 return new Response<Product>("Product not found.");
 
             try
             {
-                _productRepository.Remove(existingProduct);
+                _unitOfWork.ProductRepository.Remove(existingProduct);
                 await _unitOfWork.CompleteAsync();
 
                 return new Response<Product>(existingProduct);

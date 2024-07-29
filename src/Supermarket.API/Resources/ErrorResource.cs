@@ -5,10 +5,7 @@ namespace Supermarket.API.Resources
         public bool Success => false;
         public List<string> Messages { get; private set; }
 
-        public ErrorResource(List<string> messages)
-        {
-            Messages = messages ?? [];
-        }
+        public ErrorResource(List<string> messages) => Messages = messages ?? [];
 
         public ErrorResource(string message)
         {

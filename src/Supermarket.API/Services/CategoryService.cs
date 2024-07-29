@@ -6,35 +6,24 @@ using Supermarket.API.Infrastructure;
 
 namespace Supermarket.API.Services
 {
-	public class CategoryService : ICategoryService
+	public class CategoryService(
+        IUnitOfWork unitOfWork,
+        IMemoryCache cache,
+        ILogger<CategoryService> logger
+        ) : ICategoryService
 	{
-		private readonly ICategoryRepository _categoryRepository;
-		private readonly IUnitOfWork _unitOfWork;
-		private readonly IMemoryCache _cache;
-		private readonly ILogger<CategoryService> _logger;
+		private readonly IUnitOfWork _unitOfWork = unitOfWork;
+		private readonly IMemoryCache _cache = cache;
+		private readonly ILogger<CategoryService> _logger = logger;
 
-		public CategoryService
-		(
-			ICategoryRepository categoryRepository,
-			IUnitOfWork unitOfWork,
-			IMemoryCache cache,
-			ILogger<CategoryService> logger
-		)
-		{
-			_categoryRepository = categoryRepository;
-			_unitOfWork = unitOfWork;
-			_cache = cache;
-			_logger = logger;
-		}
-
-		public async Task<IEnumerable<Category>> ListAsync()
+        public async Task<IEnumerable<Category>> ListAsync()
 		{
 			// Here I try to get the categories list from the memory cache. If there is no data in cache, the anonymous method will be
 			// called, setting the cache to expire one minute ahead and returning the Task that lists the categories from the repository.
 			var categories = await _cache.GetOrCreateAsync(CacheKeys.CategoriesList, (entry) =>
 			{
 				entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(1);
-				return _categoryRepository.ListAsync();
+				return _unitOfWork.CategoryRepository.ListAsync();
 			});
 
 			return categories ?? new List<Category>();
@@ -44,7 +33,7 @@ namespace Supermarket.API.Services
 		{
 			try
 			{
-				await _categoryRepository.AddAsync(category);
+				await _unitOfWork.CategoryRepository.AddAsync(category);
 				await _unitOfWork.CompleteAsync();
 
 				return new Response<Category>(category);
@@ -58,7 +47,7 @@ namespace Supermarket.API.Services
 
 		public async Task<Response<Category>> UpdateAsync(int id, Category category)
 		{
-			var existingCategory = await _categoryRepository.FindByIdAsync(id);
+			var existingCategory = await _unitOfWork.CategoryRepository.FindByIdAsync(id);
 			if (existingCategory == null)
 			{
 				return new Response<Category>("Category not found.");
@@ -80,7 +69,7 @@ namespace Supermarket.API.Services
 
 		public async Task<Response<Category>> DeleteAsync(int id)
 		{
-			var existingCategory = await _categoryRepository.FindByIdAsync(id);
+			var existingCategory = await _unitOfWork.CategoryRepository.FindByIdAsync(id);
 			if (existingCategory == null)
 			{
 				return new Response<Category>("Category not found.");
@@ -88,7 +77,7 @@ namespace Supermarket.API.Services
 
 			try
 			{
-				_categoryRepository.Remove(existingCategory);
+                _unitOfWork.CategoryRepository.Remove(existingCategory);
 				await _unitOfWork.CompleteAsync();
 
 				return new Response<Category>(existingCategory);

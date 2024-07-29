@@ -5,26 +5,20 @@ using Supermarket.API.Resources;
 
 namespace Supermarket.API.Controllers
 {
-	public class CategoriesController : BaseApiController
+	public class CategoriesController(IServiceManager serviceManager, IMapper mapper) : BaseApiController
 	{
-		private readonly ICategoryService _categoryService;
-		private readonly IMapper _mapper;
+		private readonly IServiceManager _serviceManager = serviceManager;
+		private readonly IMapper _mapper = mapper;
 
-		public CategoriesController(ICategoryService categoryService, IMapper mapper)
-		{
-			_categoryService = categoryService;
-			_mapper = mapper;
-		}
-
-		/// <summary>
-		/// Lists all categories.
-		/// </summary>
-		/// <returns>List os categories.</returns>
-		[HttpGet]
+        /// <summary>
+        /// Lists all categories.
+        /// </summary>
+        /// <returns>List os categories.</returns>
+        [HttpGet]
 		[ProducesResponseType(typeof(IEnumerable<CategoryResource>), 200)]
 		public async Task<IEnumerable<CategoryResource>> ListAsync()
 		{
-			var categories = await _categoryService.ListAsync();
+			var categories = await _serviceManager.CategoryService.ListAsync();
 			return _mapper.Map<IEnumerable<CategoryResource>>(categories);
 		}
 
@@ -39,7 +33,7 @@ namespace Supermarket.API.Controllers
 		public async Task<IActionResult> PostAsync([FromBody] SaveCategoryResource resource)
 		{
 			var category = _mapper.Map<Category>(resource);
-			var result = await _categoryService.SaveAsync(category);
+			var result = await _serviceManager.CategoryService.SaveAsync(category);
 
 			if (!result.Success)
 			{
@@ -62,7 +56,7 @@ namespace Supermarket.API.Controllers
 		public async Task<IActionResult> PutAsync(int id, [FromBody] SaveCategoryResource resource)
 		{
 			var category = _mapper.Map<Category>(resource);
-			var result = await _categoryService.UpdateAsync(id, category);
+			var result = await _serviceManager.CategoryService.UpdateAsync(id, category);
 
 			if (!result.Success)
 			{
@@ -83,7 +77,7 @@ namespace Supermarket.API.Controllers
 		[ProducesResponseType(typeof(ErrorResource), 400)]
 		public async Task<IActionResult> DeleteAsync(int id)
 		{
-			var result = await _categoryService.DeleteAsync(id);
+			var result = await _serviceManager.CategoryService.DeleteAsync(id);
 
 			if (!result.Success)
 			{

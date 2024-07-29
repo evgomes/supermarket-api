@@ -5,16 +5,10 @@ using Supermarket.API.Resources;
 
 namespace Supermarket.API.Controllers
 {
-    public class ProductsController : BaseApiController
+    public class ProductsController(IServiceManager serviceManager, IMapper mapper) : BaseApiController
     {
-        private readonly IProductService _productService;
-        private readonly IMapper _mapper;
-
-        public ProductsController(IProductService productService, IMapper mapper)
-        {
-            _productService = productService;
-            _mapper = mapper;
-        }
+        private readonly IServiceManager _serviceManager = serviceManager;
+        private readonly IMapper _mapper = mapper;
 
         /// <summary>
         /// Lists all existing products according to query filters.
@@ -25,7 +19,7 @@ namespace Supermarket.API.Controllers
         public async Task<QueryResultResource<ProductResource>> ListAsync([FromQuery] ProductsQueryResource query)
         {
             var productsQuery = _mapper.Map<ProductsQuery>(query);
-            var queryResult = await _productService.ListAsync(productsQuery);
+            var queryResult = await _serviceManager.ProductService.ListAsync(productsQuery);
 
             return _mapper.Map<QueryResultResource<ProductResource>>(queryResult);
         }
@@ -41,7 +35,7 @@ namespace Supermarket.API.Controllers
         public async Task<IActionResult> PostAsync([FromBody] SaveProductResource resource)
         {
             var product = _mapper.Map<Product>(resource);
-            var result = await _productService.SaveAsync(product);
+            var result = await _serviceManager.ProductService.SaveAsync(product);
 
             if (!result.Success)
             {
@@ -64,7 +58,7 @@ namespace Supermarket.API.Controllers
         public async Task<IActionResult> PutAsync(int id, [FromBody] SaveProductResource resource)
         {
             var product = _mapper.Map<Product>(resource);
-            var result = await _productService.UpdateAsync(id, product);
+            var result = await _serviceManager.ProductService.UpdateAsync(id, product);
 
             if (!result.Success)
             {
@@ -85,7 +79,7 @@ namespace Supermarket.API.Controllers
         [ProducesResponseType(typeof(ErrorResource), 400)]
         public async Task<IActionResult> DeleteAsync(int id)
         {
-            var result = await _productService.DeleteAsync(id);
+            var result = await _serviceManager.ProductService.DeleteAsync(id);
 
             if (!result.Success)
             {
